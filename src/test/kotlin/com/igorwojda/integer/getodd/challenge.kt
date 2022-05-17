@@ -4,7 +4,11 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 private fun filterOdd(list: List<Int>): List<Int> {
-    TODO("not implemented")
+
+    val oddNumbersList = list.filter {
+        it % 2 != 0
+    }
+    return oddNumbersList
 }
 
 private class Test {
