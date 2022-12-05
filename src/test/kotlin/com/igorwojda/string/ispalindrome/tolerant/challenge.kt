@@ -4,7 +4,24 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 private fun isTolerantPalindrome(str: String, characterRemoved: Boolean = false): Boolean {
-    TODO("not implemented")
+    val reversedStr = str.reversed()
+    if (reversedStr == str)
+        return true
+
+
+    reversedStr.forEachIndexed { index, c ->
+        if (c != str[index]) {
+            return if (characterRemoved) {
+                false
+            } else {
+                val sb = StringBuilder(str)
+                sb.deleteAt(index)
+                isTolerantPalindrome(sb.toString(), true)
+            }
+        }
+    }
+
+    return true
 }
 
 private class Test {
