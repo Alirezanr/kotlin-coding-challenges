@@ -4,7 +4,20 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 private fun maxOccurrentChar(str: String): Char? {
-    TODO("not implemented")
+    if (str.isBlank())
+        return null
+
+    var mostCommonChar = ""
+    var numberOfRepeat = 0
+    str.forEachIndexed { index, c ->
+        val countOfChar = str.count { it == c }
+        if(numberOfRepeat <= countOfChar){
+            mostCommonChar = c.toString()
+            numberOfRepeat = countOfChar
+        }
+    }
+
+    return mostCommonChar.first()
 }
 
 private class Test {
@@ -26,5 +39,10 @@ private class Test {
     @Test
     fun `Finds char '1' in string "ab1c1d1e1f1g1"`() {
         maxOccurrentChar("ab1c1d1e1f1g1") shouldBeEqualTo '1'
+    }
+
+    @Test
+    fun `Finds char 'b' in string "aabb"`() {
+        maxOccurrentChar("aabb") shouldBeEqualTo 'b'
     }
 }
