@@ -3,8 +3,20 @@ package com.igorwojda.integer.pyramidgenerator
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
+fun main() {
+    generatePyramid(3)
+}
+
 fun generatePyramid(n: Int): List<String> {
-    TODO("not implemented")
+    val list = arrayListOf<String>()
+    val lastIndexCharacterCount = n + (n - 1)
+
+    for (i in 1..n) {
+        val charCount = i + (i - 1)
+        val spaceCount = (lastIndexCharacterCount - charCount) / 2
+        list.add(" ".repeat(spaceCount) + "#".repeat(charCount) + " ".repeat(spaceCount))
+    }
+    return list
 }
 
 private class Test {
